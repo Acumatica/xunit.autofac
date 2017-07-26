@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xunit.Autofac", "Sources\Xunit.Autofac\Xunit.Autofac.csproj", "{A7D0AAEB-368B-4015-B675-27FFFCCDEF0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xunit.Autofac.Usage.Tests", "Tests\Xunit.Autofac.Usage.Tests\Xunit.Autofac.Usage.Tests.csproj", "{71AB8B17-42AB-45B6-BEBF-A3F12449E979}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A7D0AAEB-368B-4015-B675-27FFFCCDEF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7D0AAEB-368B-4015-B675-27FFFCCDEF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7D0AAEB-368B-4015-B675-27FFFCCDEF0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71AB8B17-42AB-45B6-BEBF-A3F12449E979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71AB8B17-42AB-45B6-BEBF-A3F12449E979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71AB8B17-42AB-45B6-BEBF-A3F12449E979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71AB8B17-42AB-45B6-BEBF-A3F12449E979}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
