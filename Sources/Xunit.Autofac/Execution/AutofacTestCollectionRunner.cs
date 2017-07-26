@@ -6,7 +6,7 @@ using Autofac;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace Xunit.Autofac
+namespace Xunit.Autofac.Execution
 {
     internal class AutofacTestCollectionRunner: XunitTestCollectionRunner
     {

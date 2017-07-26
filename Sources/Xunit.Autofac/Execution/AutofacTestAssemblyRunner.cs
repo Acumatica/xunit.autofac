@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
@@ -6,7 +7,7 @@ using Autofac.Features.AttributeFilters;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace Xunit.Autofac
+namespace Xunit.Autofac.Execution
 {
     internal class AutofacTestAssemblyRunner: XunitTestAssemblyRunner
     {

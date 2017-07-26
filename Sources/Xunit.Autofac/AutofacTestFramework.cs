@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Autofac;
 using Xunit.Abstractions;
+using Xunit.Autofac.Execution;
 using Xunit.Sdk;
 
 namespace Xunit.Autofac

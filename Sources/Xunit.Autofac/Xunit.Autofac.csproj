@@ -52,12 +52,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutofacTestAssemblyRunner.cs" />
-    <Compile Include="AutofacTestClassRunner.cs" />
-    <Compile Include="AutofacTestCollectionRunner.cs" />
+    <Compile Include="Execution\AutofacTestAssemblyRunner.cs" />
+    <Compile Include="Execution\AutofacTestClassRunner.cs" />
+    <Compile Include="Execution\AutofacTestCollectionRunner.cs" />
     <Compile Include="AutofacTestFramework.cs" />
-    <Compile Include="AutofacTestFrameworkExecutor.cs" />
-    <Compile Include="AutofacTestMethodRunner.cs" />
+    <Compile Include="Execution\AutofacTestFrameworkExecutor.cs" />
+    <Compile Include="Execution\AutofacTestMethodRunner.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UseAutofacTestFrameworkAttribute.cs" />
