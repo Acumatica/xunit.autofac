@@ -8,7 +8,7 @@ namespace Xunit.Autofac.Usage.Tests
     {
         public SimpleTests(ITestOutputHelper testOutputHelper, ITestCase testCase)
         {
-            testOutputHelper.WriteLine(testCase.DisplayName);
+            testOutputHelper.WriteLine($"{testCase.GetType().Name}: {testCase.DisplayName}");
         }
 
         [Fact]
@@ -36,6 +36,13 @@ namespace Xunit.Autofac.Usage.Tests
         {
             yield return new object[]{1};
             yield return new object[]{2};
+        }
+
+        [Theory]
+        [MemberData(nameof(Provider), DisableDiscoveryEnumeration = true)]
+        public void MemberDataNoEnumeration(int no)
+        {
+
         }
     }
 }
