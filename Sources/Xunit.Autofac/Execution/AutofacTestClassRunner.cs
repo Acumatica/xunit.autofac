@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
@@ -34,6 +35,15 @@ namespace Xunit.Autofac.Execution
                     TypedParameter.From(new ExceptionAggregator(Aggregator)),
                     TypedParameter.From(CancellationTokenSource))
                 .RunAsync();
+        }
+
+        protected override bool TryGetConstructorArgument(ConstructorInfo constructor, int index, ParameterInfo parameter, out object argumentValue)
+        {
+            if (base.TryGetConstructorArgument(constructor, index, parameter, out argumentValue))
+                return true;
+
+            argumentValue = (Func<ILifetimeScope, object>) (s => s.Resolve(parameter.ParameterType));
+            return true;
         }
     }
 }
