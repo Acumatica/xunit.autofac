@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
@@ -19,7 +20,7 @@ namespace Xunit.Autofac.Execution
             ITestFrameworkExecutionOptions executionOptions,
             ILifetimeScope lifetimeScope
             )
-            : base(testAssembly, testCases, diagnosticMessageSink, executionMessageSink, executionOptions)
+            : base(testAssembly, testCases, new Sink(diagnosticMessageSink), new Sink(executionMessageSink), executionOptions)
         {
             _lifetimeScope = lifetimeScope;
         }
@@ -42,6 +43,34 @@ namespace Xunit.Autofac.Execution
                         TypedParameter.From(new ExceptionAggregator(Aggregator))
                     )
                     .RunAsync();
+            }
+        }
+
+        class Sink : DelegatingMessageSink
+        {
+            public Sink(IMessageSink innerSink, Action<IMessageSinkMessage> callback = null) : base(innerSink, callback)
+            {
+            }
+
+            public override bool OnMessage(IMessageSinkMessage message)
+            {
+                if (message is ITestStarting)
+                {
+                    Debug.WriteLine($"Test starting {(message as ITestStarting).TestCase.DisplayName}");
+                }
+                if (message is ITestCaseStarting)
+                {
+                    Debug.WriteLine($"Test case starting {(message as ITestCaseStarting).TestCase.DisplayName}");
+                }
+                if (message is ITestCaseFinished)
+                {
+                    Debug.WriteLine($"Test case finished {(message as ITestCaseFinished).TestCase.DisplayName}");
+                }
+                if (message is ITestFinished)
+                {
+                    Debug.WriteLine($"Test finished {(message as ITestFinished).TestCase.DisplayName}");
+                }
+                return base.OnMessage(message);
             }
         }
     }
