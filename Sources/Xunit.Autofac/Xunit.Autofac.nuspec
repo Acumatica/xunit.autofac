@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>xunit.autofac</id>
+    <version>@version</version>
+    <title>xunit.autofac</title>
+    <authors>Sergey Rogovtsev, Vladimir Panchenko</authors>
+    <owners>Acumatica</owners>
+    <licenseUrl>https://github.com/Acumatica/xunit.autofac/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Acumatica/xunit.autofac</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>xUnit - Autofac integration</description>
+    <releaseNotes>Preview.</releaseNotes>
+    <copyright>Acumatica (c) 2017</copyright>
+    <tags>xunit Autofac</tags>
+  </metadata>
+</package>
