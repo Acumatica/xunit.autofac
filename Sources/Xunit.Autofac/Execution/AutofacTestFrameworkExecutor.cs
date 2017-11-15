@@ -21,18 +21,26 @@ namespace Xunit.Autofac.Execution
 
         protected override async void RunTestCases(IEnumerable<IXunitTestCase> testCases, IMessageSink executionMessageSink, ITestFrameworkExecutionOptions executionOptions)
         {
-            using (var testAssemblyRunner = _lifetimeScope.Resolve<TestAssemblyRunner<IXunitTestCase>>(
-                TypedParameter.From<ITestAssembly>(TestAssembly),
-                TypedParameter.From(testCases),
-                TypedParameter.From(executionOptions),
-                new ResolvedParameter(
-                    (pi, cc) => pi.ParameterType == typeof(IMessageSink) && (pi.GetCustomAttribute<KeyFilterAttribute>()?.Key as string) == Keys.ExecutionMessageSink,
-                    (pi, cc) => executionMessageSink
-                )
-            ))
-            {
-                await testAssemblyRunner.RunAsync();
-            }
+	        using (var scope = _lifetimeScope.BeginLifetimeScope(cb =>
+	        {
+		        Assembly assembly = Assembly.Load(TestAssembly.Assembly.Name);
+		        cb.RegisterAssemblyModules(assembly);
+	        }))
+	        {
+		        using (var testAssemblyRunner = scope.Resolve<TestAssemblyRunner<IXunitTestCase>>(
+			        TypedParameter.From<ITestAssembly>(TestAssembly),
+			        TypedParameter.From(testCases),
+			        TypedParameter.From(executionOptions),
+			        new ResolvedParameter(
+				        (pi, cc) => pi.ParameterType == typeof (IMessageSink) &&
+				                    (pi.GetCustomAttribute<KeyFilterAttribute>()?.Key as string) == Keys.ExecutionMessageSink,
+				        (pi, cc) => executionMessageSink
+			        )
+		        ))
+		        {
+			        await testAssemblyRunner.RunAsync();
+		        }
+	        }
         }
     }
 }

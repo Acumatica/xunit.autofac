@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
+using Autofac.Core;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
@@ -11,7 +13,8 @@ namespace Xunit.Autofac.Execution
 {
     internal class AutofacTestClassRunner: XunitTestClassRunner
     {
-        private readonly ILifetimeScope _lifetimeScope;
+	    private readonly IDictionary<Type, object> _collectionFixtureMappings;
+	    private readonly ILifetimeScope _lifetimeScope;
 
         public AutofacTestClassRunner(ITestClass testClass, IReflectionTypeInfo @class, IEnumerable<IXunitTestCase> testCases, 
             IMessageSink diagnosticMessageSink, 
@@ -20,7 +23,8 @@ namespace Xunit.Autofac.Execution
             ILifetimeScope lifetimeScope
             ) : base(testClass, @class, testCases, diagnosticMessageSink, messageBus, testCaseOrderer, aggregator, cancellationTokenSource, collectionFixtureMappings)
         {
-            _lifetimeScope = lifetimeScope;
+	        _collectionFixtureMappings = collectionFixtureMappings;
+	        _lifetimeScope = lifetimeScope;
         }
 
         protected override Task<RunSummary> RunTestMethodAsync(ITestMethod testMethod, IReflectionMethodInfo method, IEnumerable<IXunitTestCase> testCases, object[] constructorArguments)
@@ -45,5 +49,14 @@ namespace Xunit.Autofac.Execution
             argumentValue = (Func<ILifetimeScope, object>) (s => s.Resolve(parameter.ParameterType));
             return true;
         }
+
+	    protected override void CreateClassFixture(Type fixtureType)
+	    {
+		    IEnumerable<Parameter> collectionFixturePars = _collectionFixtureMappings
+			    .Select(c => new TypedParameter(c.Key, c.Value));
+		    object fixtureInstance = _lifetimeScope
+			    .Resolve(fixtureType, collectionFixturePars);
+		    ClassFixtureMappings[fixtureType] = fixtureInstance;
+	    }
     }
 }
