@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Linq;
+using System.Reflection;
 using Autofac;
 using Xunit.Abstractions;
 using Xunit.Autofac.Execution;
@@ -51,6 +53,11 @@ namespace Xunit.Autofac
                 .RegisterType<XunitTestFrameworkDiscoverer>()
                 .As<ITestFrameworkDiscoverer>()
                 .ExternallyOwned();
+
+	        cb
+		        .RegisterAssemblyModules(AppDomain.CurrentDomain.GetAssemblies()
+			        .Where(a => Attribute.IsDefined(a, typeof (UseAutofacTestFrameworkAttribute)))
+			        .ToArray());
 
             _rootContainer = cb.Build();
 
