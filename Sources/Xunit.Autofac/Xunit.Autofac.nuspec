@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>xunit.autofac</id>
-    <version>@version</version>
+    <version>$version$</version>
     <title>xunit.autofac</title>
     <authors>Sergey Rogovtsev, Vladimir Panchenko</authors>
     <owners>Acumatica</owners>
