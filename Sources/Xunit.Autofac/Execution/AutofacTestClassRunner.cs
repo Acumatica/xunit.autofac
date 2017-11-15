@@ -53,7 +53,7 @@ namespace Xunit.Autofac.Execution
 	    protected override void CreateClassFixture(Type fixtureType)
 	    {
 		    IEnumerable<Parameter> collectionFixturePars = _collectionFixtureMappings
-			    .Select(_ => new TypedParameter(_.Key, _.Value));
+			    .Select(c => new TypedParameter(c.Key, c.Value));
 		    object fixtureInstance = _lifetimeScope
 			    .Resolve(fixtureType, collectionFixturePars);
 		    ClassFixtureMappings[fixtureType] = fixtureInstance;
