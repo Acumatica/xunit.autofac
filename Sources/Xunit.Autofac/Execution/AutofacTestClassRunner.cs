@@ -54,9 +54,8 @@ namespace Xunit.Autofac.Execution
 	    {
 		    IEnumerable<Parameter> collectionFixturePars = _collectionFixtureMappings
 			    .Select(c => new TypedParameter(c.Key, c.Value));
-		    object fixtureInstance = _lifetimeScope
-			    .Resolve(fixtureType, collectionFixturePars);
-		    ClassFixtureMappings[fixtureType] = fixtureInstance;
+			this.Aggregator.Run(
+				() => ClassFixtureMappings[fixtureType] = _lifetimeScope.Resolve(fixtureType, collectionFixturePars));
 	    }
     }
 }
