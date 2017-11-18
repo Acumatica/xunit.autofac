@@ -34,5 +34,10 @@ namespace Xunit.Autofac.Execution
                     TypedParameter.From<IDictionary<Type, object>>(CollectionFixtureMappings))
                 .RunAsync();
         }
+
+	    protected override void CreateCollectionFixture(Type fixtureType)
+	    {
+		    this.Aggregator.Run(() => this.CollectionFixtureMappings[fixtureType] = _lifetimeScope.Resolve(fixtureType));
+	    }
     }
 }
