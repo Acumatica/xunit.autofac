@@ -36,6 +36,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: AssemblyInformationalVersion("1.0.0.0")]
 
-#if RELEASE
+#if !DEBUG
 [assembly: AssemblyKeyFile("Properties/Xunit.Autofac.snk")]
 #endif
