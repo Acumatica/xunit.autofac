@@ -1,3 +1,5 @@
+[![Build Status](https://ci.appveyor.com/api/projects/status/4u7vfwpqo0l402bt/branch/master?svg=true)](https://ci.appveyor.com/project/Acumatica/xunit-autofac/branch/master) [![Nuget Package](https://img.shields.io/nuget/v/xunit.autofac.svg?style=flat)](https://www.nuget.org/packages/xunit.autofac/)
+
 ## About the project
 
 This project contains an integration between [xUnit](https://github.com/xunit/xunit) and [Autofac](https://github.com/autofac/Autofac).
