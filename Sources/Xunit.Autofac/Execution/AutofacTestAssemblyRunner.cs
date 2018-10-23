@@ -27,7 +27,7 @@ namespace Xunit.Autofac.Execution
 
         protected override async Task<RunSummary> RunTestCollectionAsync(IMessageBus messageBus, ITestCollection testCollection, IEnumerable<IXunitTestCase> testCases, CancellationTokenSource cancellationTokenSource)
         {
-            using (var scope = _lifetimeScope.BeginLifetimeScope(cb =>
+            using (var scope = _lifetimeScope.BeginLifetimeScope(LifetimeScopeTags.TestCollection, cb =>
             {
                 cb
                     .RegisterInstance(messageBus)

@@ -18,9 +18,7 @@ namespace Xunit.Autofac.Execution
             ILifetimeScope lifetimeScope
             ) : base(testCollection, testCases, diagnosticMessageSink, messageBus, testCaseOrderer, aggregator, cancellationTokenSource)
         {
-            var nestedScope = lifetimeScope.BeginLifetimeScope(LifetimeScopeTags.TestCollection);
-            lifetimeScope.Disposer.AddInstanceForDisposal(nestedScope);
-            _lifetimeScope = nestedScope;
+            _lifetimeScope = lifetimeScope;
         }
 
         protected override Task<RunSummary> RunTestClassAsync(ITestClass testClass, IReflectionTypeInfo @class, IEnumerable<IXunitTestCase> testCases)
