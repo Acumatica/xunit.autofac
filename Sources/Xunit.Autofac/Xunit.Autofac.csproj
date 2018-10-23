@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutofacRegistrationExtensions.cs" />
     <Compile Include="Execution\AutofacTestAssemblyRunner.cs" />
     <Compile Include="Execution\AutofacTestClassRunner.cs" />
     <Compile Include="Execution\AutofacTestCollectionRunner.cs" />
