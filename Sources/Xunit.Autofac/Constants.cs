@@ -2,8 +2,8 @@ namespace Xunit.Autofac
 {
     internal static class LifetimeScopeTags
     {
-        private const string Guid = "0463C29A-D9C3-4C1E-8FBB-901E6DE19071";
-        public static readonly object TestAssemblyExecution = nameof(TestAssemblyExecution) + ":" + Guid;
+        private const string TestCollectionGuid = "E55DC22E-F507-4CAF-841E-B62818EF3243";
+        public static readonly object TestCollection = nameof(TestCollection) + ":" + TestCollectionGuid;
     }
 
     internal static class Keys
