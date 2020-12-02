@@ -5,25 +5,35 @@ namespace Xunit.Autofac.Usage.TestOutputHelper.Tests
 {
     public class InjectedTestOutputHelperTests
     {
-	    private readonly ITestOutputHelper _testOutputHelper;
+	    private readonly CustomLogger _logger;
+	    private readonly ITestOutputHelper _outputHelper;
 
-	    public InjectedTestOutputHelperTests(ITestOutputHelper testOutputHelper)
-        {
-	        _testOutputHelper = testOutputHelper;
-        }
+	    public InjectedTestOutputHelperTests(CustomLogger logger, ITestOutputHelper outputHelper)
+	    {
+		    _logger = logger;
+		    _outputHelper = outputHelper;
+	    }
 
         [Fact]
         public void Fact()
         {
-	        Assert.IsType<CustomTestOutputHelper>(_testOutputHelper);
+	        Assert.IsType<CustomTestOutputHelper>(_logger.OutputHelper);
+			Assert.Same(_outputHelper, _logger.OutputHelper);
         }
     }
 
-    public class CustomTestOutputHelper : ITestOutputHelper
+    public class CustomTestOutputHelper : Sdk.TestOutputHelper
     {
-	    public void WriteLine(string message) { }
+    }
 
-	    public void WriteLine(string format, params object[] args) { }
+    public class CustomLogger
+    {
+	    public ITestOutputHelper OutputHelper { get; }
+
+	    public CustomLogger(ITestOutputHelper outputHelper)
+	    {
+		    OutputHelper = outputHelper;
+	    }
     }
 
     // ReSharper disable once UnusedMember.Global
@@ -34,6 +44,11 @@ namespace Xunit.Autofac.Usage.TestOutputHelper.Tests
 		    builder
 			    .RegisterType<CustomTestOutputHelper>()
 			    .As<ITestOutputHelper>()
+			    .InstancePerLifetimeScope();
+
+		    builder
+				.RegisterType<CustomLogger>()
+				.AsSelf()
 			    .InstancePerLifetimeScope();
 	    }
     }
