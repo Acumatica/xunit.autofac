@@ -46,8 +46,21 @@ namespace Xunit.Autofac.Execution
             for (var i = 0; i < _constructorArguments.Length; i++)
             {
                 var original = _constructorArguments[i];
-                var func = original as Func<ILifetimeScope, object>;
-                result[i] = func != null ? func(scope) : original;
+                switch (original)
+                {
+                    case Func<ILifetimeScope, object> func:
+	                    result[i] = func(scope);
+	                    break;
+                    // XunitTestClassRunner.TryGetConstructorArgument explicitly creates new TestOutputHelper instance directly
+                    case ITestOutputHelper outputHelper:
+	                    result[i] = scope.TryResolve(out ITestOutputHelper outputHelperFromScope)
+		                    ? outputHelperFromScope
+		                    : outputHelper;
+	                    break;
+                    default:
+	                    result[i] = original;
+	                    break;
+                }
             }
             return result;
         }
