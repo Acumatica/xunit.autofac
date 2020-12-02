@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xunit.Autofac", "Sources\Xunit.Autofac\Xunit.Autofac.csproj", "{A7D0AAEB-368B-4015-B675-27FFFCCDEF0E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xunit.Autofac.Usage.Tests", "Tests\Xunit.Autofac.Usage.Tests\Xunit.Autofac.Usage.Tests.csproj", "{71AB8B17-42AB-45B6-BEBF-A3F12449E979}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xunit.Autofac.Usage.TestOutputHelper.Tests", "Tests\Xunit.Autofac.Usage.TestOutputHelper.Tests\Xunit.Autofac.Usage.TestOutputHelper.Tests.csproj", "{ECD9A6C9-8481-4759-A78B-0B755EDB756F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{71AB8B17-42AB-45B6-BEBF-A3F12449E979}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71AB8B17-42AB-45B6-BEBF-A3F12449E979}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71AB8B17-42AB-45B6-BEBF-A3F12449E979}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECD9A6C9-8481-4759-A78B-0B755EDB756F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECD9A6C9-8481-4759-A78B-0B755EDB756F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECD9A6C9-8481-4759-A78B-0B755EDB756F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECD9A6C9-8481-4759-A78B-0B755EDB756F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9ACC862-3223-44E9-8AD6-AA48C0796C0B}
 	EndGlobalSection
 EndGlobal
