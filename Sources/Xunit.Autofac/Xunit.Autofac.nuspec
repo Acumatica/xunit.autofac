@@ -9,9 +9,9 @@
     <licenseUrl>https://github.com/Acumatica/xunit.autofac/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Acumatica/xunit.autofac</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>xUnit - Autofac integration</description>
-    <releaseNotes>Preview.</releaseNotes>
-    <copyright>Acumatica (c) 2017</copyright>
+    <description>This package contains an integration between xUnit and Autofac. It adds the support for the dependency injection (DI) into all xUnit entities such as test classes, fixtures, etc.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Acumatica (c) 2020</copyright>
     <tags>xunit Autofac</tags>
   </metadata>
 </package>
